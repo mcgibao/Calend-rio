@@ -13,6 +13,11 @@ const MeuCalendario = () => {
   const handleDataPress = (data) => {
     setDataSelecionada(data.dateString);
   };
+  const formatarData = (data) => {
+    const date = new Date(data);
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return date.toLocaleDateString('pt-BR', options);
+  };
 
   const formatarHora = (hora) => {
     const horaFormatada = hora.replace(/\D/g, '').replace(/^(\d{0,2})/, '$1:');
@@ -115,14 +120,19 @@ const MeuCalendario = () => {
             <Text style={{ fontSize: 20, marginBottom: 10 }}>Eventos</Text>
             {Object.keys(eventos).map((data) => (
               <View key={data}>
-                <Text>{data}</Text>
+                <Text>{formatarData(data)}</Text>
                 <FlatList
                   data={eventos[data]}
                   keyExtractor={(item) => item.id.toString()}
-                  renderItem={({ item }) => (
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                      <Text>{item.evento}</Text>
-                      <Text>{item.hora}</Text>
+                  renderItem={({ item, index }) => (
+                    <View>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
+                        <Text>{item.evento}</Text>
+                        <Text>{item.hora}</Text>
+                      </View>
+                      {index !== eventos[data].length - 1 && (
+                        <View style={{ borderBottomWidth: 1, borderBottomColor: 'gray', marginVertical: 5 }} />
+                      )}
                     </View>
                   )}
                 />
