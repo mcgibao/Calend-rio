@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
+
 const CadastroScreen = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -12,7 +13,6 @@ const CadastroScreen = () => {
       alert('As senhas não coincidem.');
       return;
     }
-    // Aqui você pode enviar os dados para a API ou fazer o que for necessário
     console.log('Nome:', nome);
     console.log('Email:', email);
     console.log('Senha:', senha);
