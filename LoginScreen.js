@@ -15,7 +15,6 @@ const LoginScreen = ({ navigation }) => {
       alert('Login incorreto');
     }
   };
-  
   const handleCadastroPress = () => {
     navigation.navigate('Cadastro');
   };
@@ -37,8 +36,10 @@ const LoginScreen = ({ navigation }) => {
         value={senha}
         onChangeText={(text) => setSenha(text)}
       />
+     <View style={styles.buttonContainer}>
+     <Button color='lightgreen' title="Registrar" onPress={handleCadastroPress} />
       <Button color='lightgreen' title="Entrar" onPress={handleLoginPress}/> 
-      <Button color='lightgreen' title="Registrar" onPress={handleCadastroPress} />
+    </View>
      
     </View>
   );
@@ -63,7 +64,13 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     paddingHorizontal: 10,
   },
-  
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    paddingHorizontal: 0,
+    marginTop: 10,
+  }
 });
 
 export default LoginScreen;

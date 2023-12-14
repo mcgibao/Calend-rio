@@ -122,20 +122,20 @@ const MeuCalendario = () => {
               <View key={data}>
                 <Text>{formatarData(data)}</Text>
                 <FlatList
-                  data={eventos[data]}
-                  keyExtractor={(item) => item.id.toString()}
-                  renderItem={({ item, index }) => (
-                    <View>
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                        <Text>{item.evento}</Text>
-                        <Text>{item.hora}</Text>
-                      </View>
-                      {index !== eventos[data].length - 1 && (
-                        <View style={{ borderBottomWidth: 1, borderBottomColor: 'gray', marginVertical: 5 }} />
-                      )}
-                    </View>
-                  )}
-                />
+                   data={eventos[data]}
+                   keyExtractor={(item) => item.id.toString()}
+                   renderItem={({ item }) => (
+                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
+                       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                         <Text>{item.evento}</Text>
+                         <Text style={{ marginLeft: 10 }}>{item.hora}</Text>
+                       </View>
+                       <TouchableOpacity onPress={() => excluirEvento(item)} style={{ backgroundColor: 'red', padding: 5, borderRadius: 5 }}>
+                         <Text style={{ color: 'white' }}>Excluir</Text>
+                       </TouchableOpacity>
+                     </View>
+                   )}
+                 />
               </View>
             ))}
             <Button title="Fechar" onPress={toggleEventosModal} />

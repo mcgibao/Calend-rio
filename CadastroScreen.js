@@ -3,7 +3,7 @@ import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { LocaleConfig } from 'react-native-calendars';
 
 
-const CadastroScreen = () => {
+const CadastroScreen = ({navigation}) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -21,7 +21,7 @@ const CadastroScreen = () => {
    localStorage.setItem('senha',senha);
    localStorage.setItem('nome',nome);
    alert('Cadastrado com sucesso')
-   navigation.navigate('LoginScreen');
+   navigation.navigate('Login');
   };
 
   return (
