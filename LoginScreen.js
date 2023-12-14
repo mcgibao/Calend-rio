@@ -1,23 +1,27 @@
-// LoginScreen.js
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet,StatusBar, SafeAreaView, } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
 
   const handleLoginPress = () => {
-    // Lógica de autenticação aqui (pode ser uma chamada a uma API, etc.)
-    // Se a autenticação for bem-sucedida, navegue para a tela principal
+  if(login == "guilherme@teste.com" && senha == "123" || "vitor@teste.com" && senha == "123" || "artur@teste.com" && senha == "123" || "luis@teste.com" && senha == "123"){
     navigation.navigate('Principal');
-  };
+  }
+    else alert("Login ou senha incorreta");
 
+    if(login === '' || senha === '' ){
+      alert('Login incorreto');
+    }
+  };
+  
   const handleCadastroPress = () => {
-    // Navegue para a tela de cadastro
     navigation.navigate('Cadastro');
   };
 
   return (
+    
     <View style={styles.container}>
       <Text style={styles.title}>Tela de Login</Text>
       <TextInput
@@ -33,8 +37,9 @@ const LoginScreen = ({ navigation }) => {
         value={senha}
         onChangeText={(text) => setSenha(text)}
       />
-      <Button title="Entrar" onPress={handleLoginPress} />
-      <Button title="Registrar" onPress={handleCadastroPress} />
+      <Button color='lightgreen' title="Entrar" onPress={handleLoginPress}/> 
+      <Button color='lightgreen' title="Registrar" onPress={handleCadastroPress} />
+     
     </View>
   );
 };
@@ -58,6 +63,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     paddingHorizontal: 10,
   },
+  
 });
 
 export default LoginScreen;

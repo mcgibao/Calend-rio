@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { LocaleConfig } from 'react-native-calendars';
 
 
 const CadastroScreen = () => {
@@ -12,10 +13,15 @@ const CadastroScreen = () => {
     if (senha !== confirmacaoSenha) {
       alert('As senhas não coincidem.');
       return;
+    } 
+    if(senha === '' || nome === '' || email === ''){
+      alert('Cadastro incorreto');
     }
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Senha:', senha);
+   localStorage.setItem('usuario',email);
+   localStorage.setItem('senha',senha);
+   localStorage.setItem('nome',nome);
+   alert('Cadastrado com sucesso')
+   navigation.navigate('LoginScreen');
   };
 
   return (
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 10,
     paddingHorizontal: 10,
-    paddingVertical: 8,
+    paddingVertical: 1,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
